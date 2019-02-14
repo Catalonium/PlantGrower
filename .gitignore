@@ -15,7 +15,7 @@
 .vs/
 
 # Visual Studio code cache directory exclusion
-*.vscode/
+.vscode/
 
 # Gradle cache directory
 .gradle/
