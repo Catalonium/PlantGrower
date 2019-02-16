@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Crop : MonoBehaviour {
+public class Seed : MonoBehaviour {
 
 	public string seedName;
 	public float growingTime;
