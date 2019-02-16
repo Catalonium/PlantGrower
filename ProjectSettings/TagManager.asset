@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Button_Start
+  - TagSeedEggPlant
+  - TagSeedCucumber
+  - TagSeedPumpkin
+  - TagWaterPot
   layers:
   - Default
   - TransparentFX
