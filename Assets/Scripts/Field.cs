@@ -2,7 +2,7 @@
 
 public class Field : MonoBehaviour {
 
-	public Crop currentCrop;
+	public Seed pickedCrop;
 	bool isWatered;
 	int timer;
 
