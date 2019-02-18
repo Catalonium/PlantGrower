@@ -17,15 +17,20 @@ public class MouseMechanics : MonoBehaviour {
 
     private void Update()
     {
-        Vector3 clickPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+        Vector2 origin = new Vector2(ray.origin.x, ray.origin.y);
+
         if (Input.GetMouseButtonDown(PRIMARY_MOUSE_BTN))
         {
-            Debug.Log("Mouse clicked .... ");
-            // get mouse click position in world unit(not in actual pixel unit)
-            Collider2D collider2D = Physics2D.OverlapPoint(new Vector2(clickPos.x, clickPos.y));
-            if (collider2D != null && collider2D.CompareTag("TagSeedEggPlant"))
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, ray.direction);
+
+            Debug.Log("coordinate : " + ray.origin.x + " " + ray.origin.y + " ");
+            if (raycastHit2D.collider != null) {
+                Debug.Log("Hit something");
+            }
+            else
             {
-                Debug.Log("Clicked on the Eggplant seeds...");
+                Debug.Log("Didn't hit anything.");
             }
         }
     }
