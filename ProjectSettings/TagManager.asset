@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Button_Start
+  - Seed
+  - WaterPot
   layers:
   - Default
   - TransparentFX
