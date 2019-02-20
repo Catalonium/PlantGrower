@@ -1,11 +1,17 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class Timer : MonoBehaviour {
 
-	public float timeLimit = 60;
-	public Text timer;
+	public float timeLimit = 10;
+	private Text timer;
+
+	private void Start() {
+		
+		timer = this.GetComponent<Text>();
+
+	}
 
 	void Update() {
 

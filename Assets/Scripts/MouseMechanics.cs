@@ -10,6 +10,9 @@ public class MouseMechanics : MonoBehaviour {
 	private int moveMode = 0;
 
 	void Start() {
+
+		selectedObject = null; // init for safety purposes
+
 	}
 
 	void Update() {
@@ -21,25 +24,42 @@ public class MouseMechanics : MonoBehaviour {
 
 		// when mouse is clicked
 		if (Input.GetMouseButtonDown(0)) {
+			// if there's already a selected object on cursor
+			if (selectedObject == null) {
 
-			rayHit = Physics2D.Raycast(cursorPosition, ray.direction);
+				// fire ray
+				rayHit = Physics2D.Raycast(cursorPosition, ray.direction);
 
-			// select object depending on the mode
-			if (rayHit.collider != null) {
-				if (moveMode != 1 && selectedObject == null) {
-					selectedObject = rayHit.collider.gameObject;
-					Debug.Log("Selected " + selectedObject.GetComponent<Seed>().seedName);
-					originalPos = selectedObject.transform.position;
-					moveMode = 1;
+				// select object depending on the mode
+				if (rayHit.collider.tag.Equals("Seed")) {
+					// switch to object moving mode
+					if (moveMode != 1) {
+						selectedObject = rayHit.collider.gameObject;
+						Debug.Log("Selected " + selectedObject.GetComponent<Seed>().seedName);
+						originalPos = selectedObject.transform.position;
+						moveMode = 1;
+					}
 				}
-				// when clicked with an object on the cursor, reset it
-				else {
-					moveMode = 2;
-					Debug.Log("Deselected " + selectedObject.GetComponent<Seed>().seedName);
+				else if (rayHit.collider.tag.Equals("WaterPot")) {
+					// switch to object moving mode
+					if (moveMode != 1) {
+						selectedObject = rayHit.collider.gameObject;
+						Debug.Log("Selected " + selectedObject.tag + ".");
+						originalPos = selectedObject.transform.position;
+						moveMode = 1;
+					}
 				}
-				
+
 			}
-			
+			// when clicked with an object on the cursor
+			else {
+				// run necessary processes...
+
+				// reset selected object
+				moveMode = 2;
+				Debug.Log("Deselected object.");
+			}
+
 		}
 
 		// carry object with cursor
