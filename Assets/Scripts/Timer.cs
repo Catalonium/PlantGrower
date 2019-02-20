@@ -1,26 +1,31 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-
 public class Timer : MonoBehaviour {
 
-	public float timeLimit = 10;
-	private Text timer;
+    public Text timer;
 
-	private void Start() {
-		
-		timer = this.GetComponent<Text>();
+    private float min = 2;
+    private float sec = 0;
 
-	}
+    void Update()
+    {
+        sec -= Time.deltaTime;
+        if (sec < 0 && min > 0)
+        {
+            min -= 1;
+            sec = 59;
+        }
+        if (min < 1 && sec < 0)
+        {
+            timer.text = "Time's up!";
+            return;
+        }
+        timer.text = min.ToString("00") + ":" + sec.ToString("00");
+    }
 
-	void Update() {
+    void HandleTimerLabel()
+    {
 
-		timeLimit -= Time.deltaTime;
-		timer.text = timeLimit.ToString("F0");
-		if (timeLimit < 0) {
-			timer.text = "Game Over!";
-		}
-
-	}
+    }
 
 }
