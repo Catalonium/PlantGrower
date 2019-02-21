@@ -11,15 +11,13 @@ public class MouseMechanics : MonoBehaviour {
     private Vector2 originalPos;
     private int moveMode = 0;
 
-    private const string TAG_CROP = "Crop";
+    private const string TAG_SEED = "Seed";
     private const string TAG_WATERPOT = "WaterPot";
     private const string TAG_FIELD = "Field";
 
     void Start()
     {
-
         selectedObject = null; // init for safety purposes
-
     }
 
     void Update()
@@ -45,12 +43,12 @@ public class MouseMechanics : MonoBehaviour {
                     // select object depending on the mode
                     switch (collidedTag)
                     {
-                        case TAG_CROP:
+                        case TAG_SEED:
                             // switch to object moving mode
                             if (moveMode != 1)
                             {
                                 selectedObject = rayHit.collider.gameObject;
-                                Debug.Log("Selected " + selectedObject.GetComponent<Seed>().seedName);
+                                Debug.Log("Selected " + selectedObject.GetComponent<Seed>().seedName + " seed");
                                 originalPos = selectedObject.transform.position;
                                 moveMode = 1;
                             }
@@ -60,7 +58,7 @@ public class MouseMechanics : MonoBehaviour {
                             if (moveMode != 1)
                             {
                                 selectedObject = rayHit.collider.gameObject;
-                                Debug.Log("Selected " + selectedObject.tag + ".");
+                                Debug.Log("Selected " + selectedObject.tag);
                                 originalPos = selectedObject.transform.position;
                                 moveMode = 1;
                             }
@@ -76,10 +74,12 @@ public class MouseMechanics : MonoBehaviour {
                         // initiate a new seed on the selected(clicked) field.
                         // ========== Need to fix here ==========
                         // Instantiate(seed, Input.mousePosition, Quaternion.identity);
+
+                        // TODO instantiate unnecessary, have to discuss logic for this part
                     }
                     // reset selected object
                     moveMode = 2;
-                    Debug.Log("Deselected object.");
+                    Debug.Log("Deselected object");
                 }
             }
 

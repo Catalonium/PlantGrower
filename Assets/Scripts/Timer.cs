@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour {
 
     void Update()
     {
+        // TODO will appreciate simple comments for readability
         sec -= Time.deltaTime;
         if (sec < 0 && min > 0)
         {

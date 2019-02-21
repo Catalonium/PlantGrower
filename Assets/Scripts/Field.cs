@@ -6,11 +6,16 @@ public class Field : MonoBehaviour {
 	bool isWatered;
 	int timer;
 
-	void Start() {
-		// set timer and shit
+	void Start()
+	{
+		// set timer and stuff (for individual crop field)
 	}
 
-	void Update() {
+	void Update()
+	{
+		// TODO this is where crops should be held (from placed seeds)
+		// so that seeds will "turn" into crops, and will "grow" here
+
 		// if clicked with a crop, assign it to currentCrop
 		// assign growTime to timer
 
