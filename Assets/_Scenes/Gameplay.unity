@@ -1292,6 +1292,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14465cad6c790864099c97d2c1fa2a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eggplantCrop: {fileID: 1737140486894648, guid: 7518900c246af634a8c888ec09fc7579,
+    type: 2}
+  pumpkinCrop: {fileID: 1939904429799472, guid: ed38f8286d0a35a4889b83581915e131,
+    type: 2}
+  cucumberCrop: {fileID: 1933769597970590, guid: 7f97d7b99b04856469e4a4fa6256d29d,
+    type: 2}
+  playground: {fileID: 1545437837}
   seed: {fileID: 1264863948091116, guid: 6b97ca3f19c187944a8c5c8a9a32d197, type: 2}
 --- !u!1 &1383937542
 GameObject:

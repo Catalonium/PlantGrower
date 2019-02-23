@@ -1,7 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseMechanics : MonoBehaviour {
 
+    // for object pooling
+    private List<GameObject> cropPool;
+
+    public GameObject eggplantCrop;
+    public GameObject pumpkinCrop;
+    public GameObject cucumberCrop;
+
+    public GameObject playground;
     public GameObject seed;
 
     private Vector2 cursorPosition;
@@ -17,6 +26,7 @@ public class MouseMechanics : MonoBehaviour {
 
     void Start()
     {
+        SetupPool();
         selectedObject = null; // init for safety purposes
     }
 
@@ -73,9 +83,24 @@ public class MouseMechanics : MonoBehaviour {
                     {
                         // initiate a new seed on the selected(clicked) field.
                         // ========== Need to fix here ==========
-                        // Instantiate(seed, Input.mousePosition, Quaternion.identity);
-
-                        // TODO instantiate unnecessary, have to discuss logic for this part
+                        string selectedSeedName = selectedObject.GetComponent<Seed>().seedName;
+                        GameObject obj = GetPooledObject(selectedSeedName);
+                        if (obj != null)
+                        {
+                            switch (selectedSeedName)
+                            {
+                                case Seed.EGGPLANT_NAME:
+                                    obj.transform.position = cursorPosition;
+                                    obj.SetActive(true);
+                                    break;
+                                case Seed.PUMPKIN_NAME:
+                                    Debug.Log("Pumpkin dropped");
+                                    break;
+                                case Seed.CUCUMBER_NAME:
+                                    Debug.Log("Cucumber dropped");
+                                    break;
+                            }
+                        }
                     }
                     // reset selected object
                     moveMode = 2;
@@ -101,6 +126,46 @@ public class MouseMechanics : MonoBehaviour {
                 break;
         }
 
+    }
+
+    void SetupPool()
+    {
+        cropPool = new List<GameObject>();
+        // 2-eggplant in the pool
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(eggplantCrop, playground.transform);
+            obj.SetActive(false);
+            cropPool.Add(obj);
+        }
+        // 2-cucumber in the pool
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(cucumberCrop, playground.transform);
+            obj.SetActive(false);
+            cropPool.Add(obj);
+        }
+        // 2-pumpkin in the pool
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(pumpkinCrop, playground.transform);
+            obj.SetActive(false);
+            cropPool.Add(obj);
+        }
+    }
+
+    GameObject GetPooledObject(string crop)
+    {
+        int cnt = cropPool.Count;// pool count
+        for(int i = 0; i < cnt; i++)
+        {
+            string name = cropPool[i].GetComponent<Seed>().seedName;
+            if (crop.Equals(name) && !cropPool[i].activeInHierarchy)
+            {
+                return cropPool[i];
+            }
+        }
+        return null;
     }
 
 }
