@@ -396,6 +396,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1750341013100970, guid: 88fb9124094ab654ab8746b46d65caf8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88fb9124094ab654ab8746b46d65caf8, type: 2}
   m_IsPrefabParent: 0
@@ -1497,14 +1501,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14465cad6c790864099c97d2c1fa2a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eggplantCrop: {fileID: 1737140486894648, guid: 7518900c246af634a8c888ec09fc7579,
+  eggplantCrop: {fileID: 1750341013100970, guid: 88fb9124094ab654ab8746b46d65caf8,
     type: 2}
-  pumpkinCrop: {fileID: 1939904429799472, guid: ed38f8286d0a35a4889b83581915e131,
+  pumpkinCrop: {fileID: 1479910203998942, guid: fa311b9ee0bc67f45a653df479020389,
     type: 2}
-  cucumberCrop: {fileID: 1933769597970590, guid: 7f97d7b99b04856469e4a4fa6256d29d,
+  cucumberCrop: {fileID: 1762521060609916, guid: 61f7d7ce8a857d5479be2400eea0ee4d,
     type: 2}
   playground: {fileID: 1545437837}
   seed: {fileID: 1264863948091116, guid: 6b97ca3f19c187944a8c5c8a9a32d197, type: 2}
+  spriteEggplantCrop: {fileID: 21300020, guid: 53b347cde2ff14e4d86b9bd290ef93e3, type: 3}
+  spriteCucumberCrop: {fileID: 21300016, guid: 53b347cde2ff14e4d86b9bd290ef93e3, type: 3}
+  spritePumpkinCrop: {fileID: 21300018, guid: 53b347cde2ff14e4d86b9bd290ef93e3, type: 3}
 --- !u!1 &1383937542
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,6 +2479,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376704605901006, guid: 555630bea4bbf2545a0eff8a7adaad9f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 555630bea4bbf2545a0eff8a7adaad9f, type: 2}

@@ -4,12 +4,13 @@ public class Timer : MonoBehaviour {
 
     public Text timer;
 
-    private float min = 2;
+    private float min = 3;
     private float sec = 0;
 
     void Update()
     {
-        // TODO will appreciate simple comments for readability
+        // Timer for the upper right corner of the timer text in game.
+        // Show time in real digital clock style format, for example [01:23].
         sec -= Time.deltaTime;
         if (sec < 0 && min > 0)
         {
@@ -22,11 +23,6 @@ public class Timer : MonoBehaviour {
             return;
         }
         timer.text = min.ToString("00") + ":" + sec.ToString("00");
-    }
-
-    void HandleTimerLabel()
-    {
-
     }
 
 }

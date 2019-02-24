@@ -14,6 +14,10 @@ public class MouseMechanics : MonoBehaviour {
     public GameObject playground;
     public GameObject seed;
 
+    public Sprite spriteEggplantCrop;
+    public Sprite spriteCucumberCrop;
+    public Sprite spritePumpkinCrop;
+
     private Vector2 cursorPosition;
     private Ray ray;
     private RaycastHit2D rayHit;
@@ -71,19 +75,27 @@ public class MouseMechanics : MonoBehaviour {
                 }
                 // when clicked with an object on the cursor
                 else {
-                    // run necessary processes...
-                    // ===== TODO temporary error fix [ Problem part ] =====
-                    if (rayHit.collider.tag.Equals(TAG_FIELD) && !selectedObject.tag.Equals("WaterPot")) {
-                        // initiate a new seed on the selected(clicked) field.
-                        string selectedSeedName = selectedObject.GetComponent<Seed>().seedName;
-                        GameObject obj = GetPooledObject(selectedSeedName);
-                        if (obj != null) {
-                            GameObject fieldObj = rayHit.collider.gameObject;
-                            Vector3 fieldPos = fieldObj.transform.position;
-                            obj.transform.position = fieldPos;
-                            obj.SetActive(true);
+                    var hitCollider = rayHit.collider;
+                    // put seed on the field
+                    if (hitCollider.tag.Equals(TAG_FIELD)) {
+                        switch (selectedObject.tag) {
+                            case "WaterPot":
+                                // start growing timer when pour water to plant
+                                break;
+                            default:
+                                // Grow a new seed on the selected(clicked) field.
+                                string selectedSeedName = selectedObject.GetComponent<Seed>().seedName;
+                                GameObject obj = GetPooledObject(selectedSeedName);
+                                if (obj != null) {
+                                    GameObject fieldObj = hitCollider.gameObject;
+                                    Vector3 fieldPos = fieldObj.transform.position;
+                                    obj.transform.position = fieldPos;
+                                    obj.SetActive(true);
+                                }
+                                break;
                         }
                     }
+
                     // reset selected object
                     moveMode = 2;
                     if (selectedObject.tag.Equals("Seed")) alphaChanger(selectedObject);
@@ -118,28 +130,42 @@ public class MouseMechanics : MonoBehaviour {
         img.color = clr;
     }
 
+    /// <summary>
+    ///     Setting up cache pool for game object spawning
+    /// </summary>
     void SetupPool() {
         cropPool = new List<GameObject>();
         // 2-eggplant in the pool
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 4; i++) {
             GameObject obj = (GameObject)Instantiate(eggplantCrop, playground.transform);
+            obj.GetComponent<Image>().sprite = spriteEggplantCrop;
             obj.SetActive(false);
+            alphaChanger(obj);
             cropPool.Add(obj);
         }
         // 2-cucumber in the pool
         for (int i = 0; i < 2; i++) {
             GameObject obj = (GameObject)Instantiate(cucumberCrop, playground.transform);
+            obj.GetComponent<Image>().sprite = spriteCucumberCrop;
             obj.SetActive(false);
+            alphaChanger(obj);
             cropPool.Add(obj);
         }
         // 2-pumpkin in the pool
         for (int i = 0; i < 2; i++) {
             GameObject obj = (GameObject)Instantiate(pumpkinCrop, playground.transform);
+            obj.GetComponent<Image>().sprite = spritePumpkinCrop;
             obj.SetActive(false);
+            alphaChanger(obj);
             cropPool.Add(obj);
         }
     }
 
+    /// <summary>
+    ///     Get game object from cache depending on the crop name.
+    /// </summary>
+    /// <param name="crop">crop name to get.</param>
+    /// <returns>GameObject or null</returns>
     GameObject GetPooledObject(string crop) {
         int cnt = cropPool.Count;// pool count
         for (int i = 0; i < cnt; i++) {
@@ -150,6 +176,5 @@ public class MouseMechanics : MonoBehaviour {
         }
         return null;
     }
-
 }
 
