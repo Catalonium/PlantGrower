@@ -7,13 +7,8 @@ public class Seed : MonoBehaviour {
     public const string PUMPKIN_NAME = "Pumpkin";
     public const string CUCUMBER_NAME = "Cucumber";
 
-	public string seedName;
-	public float growingTime;
-	public int score;
-
-    public string getSeedName()
-    {
-        return seedName;
-    }
+    public string seedName;
+    public float growingTime;
+    public int score;
 
 }

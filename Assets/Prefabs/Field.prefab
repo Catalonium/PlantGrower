@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222746524789420394}
   - component: {fileID: 114507693734243424}
   - component: {fileID: 61867756675220352}
+  - component: {fileID: 114907725327560718}
   m_Layer: 8
   m_Name: Field
   m_TagString: Field
@@ -81,6 +82,22 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114907725327560718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598784948689474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a463992de82374f83322c3c40cae9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickedCrop: {fileID: 0}
+  isWatered: 0
+  hasCrop: 0
+  sec: 0
+  timer: 0
 --- !u!222 &222746524789420394
 CanvasRenderer:
   m_ObjectHideFlags: 1
