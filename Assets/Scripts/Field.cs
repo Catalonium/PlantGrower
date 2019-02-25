@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Field : MonoBehaviour {
 
@@ -9,6 +11,10 @@ public class Field : MonoBehaviour {
     public bool hasCrop;
     // Number of seconds to change crop
     public float sec;
+    // currently holding crop on this field
+    public GameObject currentlyHoldingObj;
+    // sprite for eggplant
+    public Sprite eggplantSprite;
     // TODO comment
 	public int timer;
 
@@ -40,8 +46,10 @@ public class Field : MonoBehaviour {
     void GrowOnWater() {
         sec += Time.deltaTime;
         if(sec >= 15) {
+            Debug.Log("--- GROW ON WATER ---");
             sec = 0;
             isWatered = false;
+            currentlyHoldingObj.GetComponent<Image>().sprite = eggplantSprite;
         }
     }
 

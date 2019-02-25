@@ -78,16 +78,20 @@ public class MouseMechanics : MonoBehaviour {
                     var hitCollider = rayHit.collider;
                     // put seed on the field
                     if (hitCollider.tag.Equals(TAG_FIELD)) {
+                        GameObject fieldObj = hitCollider.gameObject;
+                        Field fieldScript = fieldObj.GetComponent<Field>();
                         switch (selectedObject.tag) {
                             case "WaterPot":
                                 // start growing timer when pour water to plant
+                                Debug.Log("POURED WATER");
+                                fieldScript.PourWater();
                                 break;
                             default:
                                 // Grow a new seed on the selected(clicked) field.
                                 string selectedSeedName = selectedObject.GetComponent<Seed>().seedName;
                                 GameObject obj = GetPooledObject(selectedSeedName);
                                 if (obj != null) {
-                                    GameObject fieldObj = hitCollider.gameObject;
+                                    fieldScript.currentlyHoldingObj = obj;
                                     Vector3 fieldPos = fieldObj.transform.position;
                                     obj.transform.position = fieldPos;
                                     obj.SetActive(true);
