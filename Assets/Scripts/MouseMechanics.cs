@@ -83,7 +83,6 @@ public class MouseMechanics : MonoBehaviour {
                         switch (selectedObject.tag) {
                             case "WaterPot":
                                 // start growing timer when pour water to plant
-                                Debug.Log("POURED WATER");
                                 fieldScript.PourWater();
                                 break;
                             default:

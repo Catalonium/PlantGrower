@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class Field : MonoBehaviour {
 
-	public Seed pickedCrop;
+    public Seed pickedCrop;
     // To check whether the pour water on this field or not
-	public bool isWatered;
+    public bool isWatered;
     // To check whether the crop exist on this field or not
     public bool hasCrop;
     // Number of seconds to change crop
@@ -15,18 +15,22 @@ public class Field : MonoBehaviour {
     public GameObject currentlyHoldingObj;
     // sprite for eggplant
     public Sprite eggplantSprite;
+    // sprite for pumpkin
+    public Sprite pumpkinSprite;
+    // sprite for cucumber
+    public Sprite cucumberSprite;
     // TODO comment
-	public int timer;
+    public int timer;
+    // crop change from plant to vegetable time constant
+    private const int CROP_TIMER = 5;
 
-	void Start()
-	{
+    void Start() {
         // set timer and stuff (for individual crop field)
         isWatered = false;
         timer = 0;
-	}
+    }
 
-	void Update()
-	{
+    void Update() {
         // TODO this is where crops should be held (from placed seeds)
         // so that seeds will "turn" into crops, and will "grow" here
 
@@ -41,15 +45,25 @@ public class Field : MonoBehaviour {
         if (isWatered) {
             GrowOnWater();
         }
-	}
+    }
 
     void GrowOnWater() {
         sec += Time.deltaTime;
-        if(sec >= 15 && currentlyHoldingObj != null) { // null control is to prevent an occasional error, further testing beneficial
-            Debug.Log("--- GROW ON WATER ---");
+        if (sec >= CROP_TIMER && currentlyHoldingObj != null) { // null control is to prevent an occasional error, further testing beneficial
             sec = 0;
             isWatered = false;
-            currentlyHoldingObj.GetComponent<Image>().sprite = eggplantSprite;
+            string seedName = currentlyHoldingObj.GetComponent<Seed>().seedName;
+            switch (seedName) {
+                case Seed.EGGPLANT_NAME:
+                    currentlyHoldingObj.GetComponent<Image>().sprite = eggplantSprite;
+                    break;
+                case Seed.PUMPKIN_NAME:
+                    currentlyHoldingObj.GetComponent<Image>().sprite = pumpkinSprite;
+                    break;
+                case Seed.CUCUMBER_NAME:
+                    currentlyHoldingObj.GetComponent<Image>().sprite = cucumberSprite;
+                    break;
+            }
         }
     }
 
