@@ -99,6 +99,8 @@ MonoBehaviour:
   sec: 0
   currentlyHoldingObj: {fileID: 0}
   eggplantSprite: {fileID: 21300014, guid: 20e80e11218c2884580c03842412bde1, type: 3}
+  pumpkinSprite: {fileID: 21300016, guid: 20e80e11218c2884580c03842412bde1, type: 3}
+  cucumberSprite: {fileID: 21300012, guid: 20e80e11218c2884580c03842412bde1, type: 3}
   timer: 0
 --- !u!222 &222746524789420394
 CanvasRenderer:
