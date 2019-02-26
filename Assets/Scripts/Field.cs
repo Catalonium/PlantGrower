@@ -45,7 +45,7 @@ public class Field : MonoBehaviour {
 
     void GrowOnWater() {
         sec += Time.deltaTime;
-        if(sec >= 15) {
+        if(sec >= 15 && currentlyHoldingObj != null) { // null control is to prevent an occasional error, further testing beneficial
             Debug.Log("--- GROW ON WATER ---");
             sec = 0;
             isWatered = false;
