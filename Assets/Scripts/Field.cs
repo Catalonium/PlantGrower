@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-
 public class Field : MonoBehaviour {
 
     public Seed pickedCrop;
@@ -13,12 +12,14 @@ public class Field : MonoBehaviour {
     public float sec;
     // currently holding crop on this field
     public GameObject currentlyHoldingObj;
-    // sprite for eggplant
+    // sprite for eggplant crop
     public Sprite eggplantSprite;
-    // sprite for pumpkin
+    // sprite for pumpkin crop
     public Sprite pumpkinSprite;
-    // sprite for cucumber
+    // sprite for cucumber crop
     public Sprite cucumberSprite;
+    // sprite for seed
+    public Sprite seedSprite;
     // TODO comment
     public int timer;
     // crop change from plant to vegetable time constant
@@ -64,11 +65,21 @@ public class Field : MonoBehaviour {
                     currentlyHoldingObj.GetComponent<Image>().sprite = cucumberSprite;
                     break;
             }
+            currentlyHoldingObj.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
     public void PourWater() {
         isWatered = true;
+    }
+
+    public void CollectCrop() {
+        if (currentlyHoldingObj != null) {
+            currentlyHoldingObj.SetActive(false);
+            currentlyHoldingObj.GetComponent<Image>().sprite = seedSprite;
+            currentlyHoldingObj.GetComponent<BoxCollider2D>().enabled = true;
+            currentlyHoldingObj = null;
+        }
     }
 
 }

@@ -52,11 +52,14 @@ public class MouseMechanics : MonoBehaviour {
                 if (selectedObject == null) {
                     // select object depending on the mode
                     switch (collidedTag) {
+                        case TAG_FIELD:
+                            Field fieldScript = rayHit.collider.gameObject.GetComponent<Field>();
+                            fieldScript.CollectCrop();
+                            break;
                         case TAG_SEED:
                             // switch to object moving mode
                             if (moveMode != 1) {
                                 selectedObject = rayHit.collider.gameObject;
-                                Debug.Log("Selected " + selectedObject.GetComponent<Seed>().seedName + " seed");
                                 originalPos = selectedObject.transform.position;
                                 alphaChanger(selectedObject);
                                 moveMode = 1;
@@ -66,7 +69,6 @@ public class MouseMechanics : MonoBehaviour {
                             // switch to object moving mode
                             if (moveMode != 1) {
                                 selectedObject = rayHit.collider.gameObject;
-                                Debug.Log("Selected " + selectedObject.tag);
                                 originalPos = selectedObject.transform.position;
                                 moveMode = 1;
                             }
@@ -90,6 +92,17 @@ public class MouseMechanics : MonoBehaviour {
                                 string selectedSeedName = selectedObject.GetComponent<Seed>().seedName;
                                 GameObject obj = GetPooledObject(selectedSeedName);
                                 if (obj != null) {
+                                    switch (selectedSeedName) {
+                                        case Seed.EGGPLANT_NAME:
+                                            obj.GetComponent<Image>().sprite = spriteEggplantCrop;
+                                            break;
+                                        case Seed.PUMPKIN_NAME:
+                                            obj.GetComponent<Image>().sprite = spritePumpkinCrop;
+                                            break;
+                                        case Seed.CUCUMBER_NAME:
+                                            obj.GetComponent<Image>().sprite = spriteCucumberCrop;
+                                            break;
+                                    }
                                     fieldScript.currentlyHoldingObj = obj;
                                     Vector3 fieldPos = fieldObj.transform.position;
                                     obj.transform.position = fieldPos;
@@ -141,7 +154,6 @@ public class MouseMechanics : MonoBehaviour {
         // 2-eggplant in the pool
         for (int i = 0; i < 4; i++) {
             GameObject obj = (GameObject)Instantiate(eggplantCrop, playground.transform);
-            obj.GetComponent<Image>().sprite = spriteEggplantCrop;
             obj.SetActive(false);
             alphaChanger(obj);
             cropPool.Add(obj);
@@ -149,7 +161,6 @@ public class MouseMechanics : MonoBehaviour {
         // 2-cucumber in the pool
         for (int i = 0; i < 2; i++) {
             GameObject obj = (GameObject)Instantiate(cucumberCrop, playground.transform);
-            obj.GetComponent<Image>().sprite = spriteCucumberCrop;
             obj.SetActive(false);
             alphaChanger(obj);
             cropPool.Add(obj);
@@ -157,7 +168,6 @@ public class MouseMechanics : MonoBehaviour {
         // 2-pumpkin in the pool
         for (int i = 0; i < 2; i++) {
             GameObject obj = (GameObject)Instantiate(pumpkinCrop, playground.transform);
-            obj.GetComponent<Image>().sprite = spritePumpkinCrop;
             obj.SetActive(false);
             alphaChanger(obj);
             cropPool.Add(obj);
