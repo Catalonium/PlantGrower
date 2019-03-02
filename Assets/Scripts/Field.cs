@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class Field : MonoBehaviour {
 
+    Score score;
+
     public Seed pickedCrop;
     // To check whether the pour water on this field or not
     public bool isWatered;
@@ -29,6 +31,8 @@ public class Field : MonoBehaviour {
         // set timer and stuff (for individual crop field)
         isWatered = false;
         timer = 0;
+        // init score script
+        score = GameObject.Find("ScoreText").GetComponent<Score>();
     }
 
     void Update() {
@@ -79,6 +83,8 @@ public class Field : MonoBehaviour {
             currentlyHoldingObj.GetComponent<Image>().sprite = seedSprite;
             currentlyHoldingObj.GetComponent<BoxCollider2D>().enabled = true;
             currentlyHoldingObj = null;
+            // set score
+            score.SetScore(5);
         }
     }
 
