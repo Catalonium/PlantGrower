@@ -5,9 +5,10 @@ public class Field : MonoBehaviour {
 
     Score score;
 
-    public Seed pickedCrop;
     // To check whether the pour water on this field or not
     public bool isWatered;
+    // To check whether plant has grown or not
+    public bool isGrown;
     // To check whether the crop exist on this field or not
     public bool hasCrop;
     // Number of seconds to change crop
@@ -22,17 +23,15 @@ public class Field : MonoBehaviour {
     public Sprite cucumberSprite;
     // sprite for seed
     public Sprite seedSprite;
-    // TODO comment
-    public int timer;
     // crop change from plant to vegetable time constant
     private const int CROP_TIMER = 5;
 
     void Start() {
-        // set timer and stuff (for individual crop field)
         isWatered = false;
-        timer = 0;
+        isGrown = false;
+        hasCrop = false;
         // init score script
-        score = GameObject.Find("ScoreText").GetComponent<Score>();
+        score = GameObject.Find("Score").GetComponent<Score>();
     }
 
     void Update() {
@@ -47,7 +46,7 @@ public class Field : MonoBehaviour {
 
         // if timer ends, reset the field and add grown plant's score to background scores
 
-        if (isWatered) {
+        if (isWatered && !isGrown) {
             GrowOnWater();
         }
     }
@@ -56,7 +55,7 @@ public class Field : MonoBehaviour {
         sec += Time.deltaTime;
         if (sec >= CROP_TIMER && currentlyHoldingObj != null) { // null control is to prevent an occasional error, further testing beneficial
             sec = 0;
-            isWatered = false;
+            isGrown = true;
             string seedName = currentlyHoldingObj.GetComponent<Seed>().seedName;
             switch (seedName) {
                 case Seed.EGGPLANT_NAME:
@@ -69,7 +68,6 @@ public class Field : MonoBehaviour {
                     currentlyHoldingObj.GetComponent<Image>().sprite = cucumberSprite;
                     break;
             }
-            currentlyHoldingObj.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
@@ -83,8 +81,11 @@ public class Field : MonoBehaviour {
             currentlyHoldingObj.GetComponent<Image>().sprite = seedSprite;
             currentlyHoldingObj.GetComponent<BoxCollider2D>().enabled = true;
             currentlyHoldingObj = null;
+            isWatered = false;
+            isGrown = false;
+            hasCrop = false;
             // set score
-            score.SetScore(5);
+            score.SetScore(5);  // TODO here has to be the awarded score of the grown plant
         }
     }
 
