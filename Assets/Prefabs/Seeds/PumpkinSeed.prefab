@@ -67,8 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seedName: Pumpkin
-  growingTime: 5
-  score: 1
+  growingTime: 10
+  score: 3
 --- !u!114 &114499002531650434
 MonoBehaviour:
   m_ObjectHideFlags: 1

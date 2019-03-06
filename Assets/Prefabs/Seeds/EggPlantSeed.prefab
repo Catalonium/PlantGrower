@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seedName: Eggplant
-  growingTime: 5
-  score: 1
+  growingTime: 8
+  score: 2
 --- !u!222 &222763311818118852
 CanvasRenderer:
   m_ObjectHideFlags: 1
