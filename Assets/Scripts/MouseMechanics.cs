@@ -81,7 +81,7 @@ public class MouseMechanics : MonoBehaviour {
 				else {
 					var hitCollider = rayHit.collider;
 					// put seed on the field
-					if (hitCollider.tag.Equals(TAG_FIELD)) {
+					if (hitCollider.CompareTag(TAG_FIELD)) {
 						GameObject fieldObj = hitCollider.gameObject;
 						Field fieldScript = fieldObj.GetComponent<Field>();
 						switch (selectedObject.tag) {
@@ -109,7 +109,7 @@ public class MouseMechanics : MonoBehaviour {
 									}
 									obj.tag = "Crop";
 									fieldScript.hasCrop = true;
-									fieldScript.currentlyHoldingObj = obj;
+									fieldScript.currentlyHoldingObj = obj.GetComponent<Seed>();
 									Vector3 fieldPos = fieldObj.transform.position;
 									obj.transform.position = fieldPos;
 									obj.SetActive(true);
@@ -121,7 +121,7 @@ public class MouseMechanics : MonoBehaviour {
 
 					// reset selected object
 					moveMode = 2;
-					if (selectedObject.tag.Equals("Seed")) alphaChanger(selectedObject);
+					if (selectedObject.CompareTag("Seed")) alphaChanger(selectedObject);
 					Debug.Log("Deselected object");
 				}
 			}

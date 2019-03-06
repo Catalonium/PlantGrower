@@ -14,7 +14,7 @@ public class Field : MonoBehaviour {
     // Number of seconds to change crop
     public float sec;
     // currently holding crop on this field
-    public GameObject currentlyHoldingObj;
+    public Seed currentlyHoldingObj;
     // sprite for eggplant crop
     public Sprite eggplantSprite;
     // sprite for pumpkin crop
@@ -56,8 +56,7 @@ public class Field : MonoBehaviour {
         if (sec >= CROP_TIMER && currentlyHoldingObj != null) { // null control is to prevent an occasional error, further testing beneficial
             sec = 0;
             isGrown = true;
-            string seedName = currentlyHoldingObj.GetComponent<Seed>().seedName;
-            switch (seedName) {
+            switch (currentlyHoldingObj.seedName) {
                 case Seed.EGGPLANT_NAME:
                     currentlyHoldingObj.GetComponent<Image>().sprite = eggplantSprite;
                     break;
@@ -77,15 +76,16 @@ public class Field : MonoBehaviour {
 
     public void CollectCrop() {
         if (currentlyHoldingObj != null) {
-            currentlyHoldingObj.SetActive(false);
-            currentlyHoldingObj.GetComponent<Image>().sprite = seedSprite;
-            currentlyHoldingObj.GetComponent<BoxCollider2D>().enabled = true;
+            // set score
+            score.AddScore(currentlyHoldingObj.score);
+            // reset current crop-tile
+            currentlyHoldingObj.gameObject.SetActive(false);
+            currentlyHoldingObj.gameObject.GetComponent<Image>().sprite = seedSprite; // *****
+            currentlyHoldingObj.gameObject.GetComponent<BoxCollider2D>().enabled = true;
             currentlyHoldingObj = null;
             isWatered = false;
             isGrown = false;
             hasCrop = false;
-            // set score
-            score.SetScore(5);  // TODO here has to be the awarded score of the grown plant
         }
     }
 
