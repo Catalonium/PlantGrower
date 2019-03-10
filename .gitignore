@@ -1,9 +1,13 @@
+# WARNING: Git ignore file should NOT be changed for non-cluttered workflow!
+
+# Folders to ignore
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
+[Uu]nityPackageManager
 
 # Never ignore Asset meta data
 ![Aa]ssets/**/*.meta
