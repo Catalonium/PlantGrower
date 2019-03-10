@@ -40,8 +40,8 @@ public class GameController : MonoBehaviour {
 		if (isGameOver) {
 			currentScore = GameObject.FindWithTag("Game_Score").GetComponent<Score>().score;
 			if (highScore < currentScore) {
-				PlayerPrefs.SetInt("HighScore", currentScore);
 				highScore = currentScore;
+				PlayerPrefs.SetInt("HighScore", highScore);
 			}
 		}
 		_game.SetActive(false);
@@ -61,7 +61,9 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void clearHighScore() {
-		PlayerPrefs.SetInt("HighScore", 0);
+		highScore = 0;
+		PlayerPrefs.SetInt("HighScore", highScore);
+		showMenu();
 	}
 	
 	public void quitGame() {
