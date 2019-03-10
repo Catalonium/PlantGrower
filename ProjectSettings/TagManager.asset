@@ -4,11 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Button_Start
   - Seed
   - WaterPot
   - Field
   - Crop
+  - Game_Scene
+  - Game_Menu
+  - Game_Score
   layers:
   - Default
   - TransparentFX

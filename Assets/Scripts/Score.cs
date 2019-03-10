@@ -3,21 +3,20 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
 
-    public Text scoreText;
-    private int score;
+	public Text scoreText;
+	public int score;
 
-    void Start() {
-        score = 0;
-        scoreText.text = "Score : 0";
-    }
+	void Start() {
+		ResetScore();
+	}
 
-    // Update is called once per frame
-    void Update() {
+	public void ResetScore() {
+		score = 0;
+		scoreText.text = "Score : 0";
+	}
 
-    }
-
-    public void AddScore(int Score) {
-        score += Score;
-        scoreText.text = "Score : " + score;
-    }
+	public void AddScore(int Score) {
+		score += Score;
+		scoreText.text = "Score : " + score;
+	}
 }
