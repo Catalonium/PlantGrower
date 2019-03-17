@@ -74,7 +74,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300008, guid: 53b347cde2ff14e4d86b9bd290ef93e3, type: 3}
+  m_Sprite: {fileID: 21300030, guid: 6881b6932690a134dbf9090e70d2013f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -93,16 +93,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a463992de82374f83322c3c40cae9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickedCrop: {fileID: 0}
   isWatered: 0
+  isGrown: 0
   hasCrop: 0
   sec: 0
   currentlyHoldingObj: {fileID: 0}
-  eggplantSprite: {fileID: 21300014, guid: 20e80e11218c2884580c03842412bde1, type: 3}
-  pumpkinSprite: {fileID: 21300016, guid: 20e80e11218c2884580c03842412bde1, type: 3}
-  cucumberSprite: {fileID: 21300012, guid: 20e80e11218c2884580c03842412bde1, type: 3}
-  seedSprite: {fileID: 21300006, guid: 20e80e11218c2884580c03842412bde1, type: 3}
-  timer: 0
+  eggplantSprite: {fileID: 21300014, guid: 6881b6932690a134dbf9090e70d2013f, type: 3}
+  pumpkinSprite: {fileID: 21300016, guid: 6881b6932690a134dbf9090e70d2013f, type: 3}
+  cucumberSprite: {fileID: 21300012, guid: 6881b6932690a134dbf9090e70d2013f, type: 3}
+  seedSprite: {fileID: 21300000, guid: 6881b6932690a134dbf9090e70d2013f, type: 3}
 --- !u!222 &222746524789420394
 CanvasRenderer:
   m_ObjectHideFlags: 1
